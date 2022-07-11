@@ -3,7 +3,7 @@
 ## Data retrieval
 ### ECMWF
 Data komt van het European Centre for Medium Range Weather Forecasting (ECMWF).
-Hindcasts (met observaties meegeassembleerd) worden gepubliceerd op Copernicus ([https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=overview](Surface) of [https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-pressure-levels?tab=overview](Hoogte)).
+Hindcasts (met observaties meegeassembleerd) worden gepubliceerd op Copernicus ([Surface](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=overview) of [Hoogte](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-pressure-levels?tab=overview)).
 Voor Forecasts is een licentie nodig van het KNMI. 
 
 Data staat aan de Copernicus-zijde in GRIB-format voor de hele wereld, op tape-cassetes. Je kunt echter aangeven dat voor een kleinere regio of in netCDF-format wil. Doe dat niet.
@@ -12,13 +12,13 @@ Deze bewerkingen uitvoeren aan de Copernicus-zijde kost het ECMWF rekencapacitei
 Er is bij de CDS onvoldoende capaciteit om alle downloads gelijktijdig te verwerken. Je staat daardoor al snel 75 min in de wachtlijst. Als je grotere datasets download of meerdere requests achter elkaar, daalt je prioriteit, en sta je langer te wachten (tot 7 dagen).
 
 ### KNMI
-Het KNMI stelt hun forecast ook beschikbaar als GRIB: [https://dataplatform.knmi.nl/dataset/harmonie-arome-cy40-p1-0-2](Surface) en [https://dataplatform.knmi.nl/dataset/harmonie-arome-cy40-p3-0-2](Pressure levels)
+Het KNMI stelt hun forecast ook beschikbaar als GRIB: [Surface](https://dataplatform.knmi.nl/dataset/harmonie-arome-cy40-p1-0-2) en [Pressure levels](https://dataplatform.knmi.nl/dataset/harmonie-arome-cy40-p3-0-2)
 
 Het Harmonie-model van het KNMI gaat echter maar 48uur vooruit, en is beperkt tot (Europees) Nederland. Het Harmoniemodel bouwd voort op het ECMWF model, het gebruikt de forecast van het ECMWF als input, om voor de regio Nederland een hogere resolutie te geven.
 
 ### NOAA GFS
 Het Amerikaanse model is vrij beschikbaar, en is het enige wereldwijde model dat dat is. Het heeft echter een grovere resolutie dan ECMWF, en daardoor een slechtere verwachtingswaarde. Als het GFS en ECMWF niet met elkaar overeenkomen varen experts vrijwel altijd op ECMWF
-Downloaden kan [https://www.nco.ncep.noaa.gov/pmb/products/gfs/](hier).
+Downloaden kan [hier](https://www.nco.ncep.noaa.gov/pmb/products/gfs/).
 
 ## Verwerken van GRIB
 GRIdded Binary is een antiek format voor 2D data. Meerdere arrays worden achter elkaar opgeslagen, voor hoogte/tijdstappen/parameters.
@@ -56,7 +56,7 @@ mv HA40_N25_202207090000_00000_GB HA40_N25_202207090000_00000_GBskip
 cdo -t knmi.partab -f nc4 cat *_GB nc_HA40_202207090000.nc4
 conda deactivate
 ```
-KNMI.partab kun je downloaden van mijn [https://gist.github.com/Papagaai35/938972d9b113ae2191cded7f8d882466](Gist.github.com)
+KNMI.partab kun je downloaden van mijn [gist.github.com](https://gist.github.com/Papagaai35/938972d9b113ae2191cded7f8d882466)
 
 ## Verwerken van netCDF
 Het NetCDF format bouwt voort op het HDF5 format, en bevat wel alle metadata die je nodig hebt. In python valt er goed mee te werken met het package `xarray`. (Een soort pandas voor veeldimensionale numpy-arrays en metadata; [https://docs.xarray.dev/en/stable/](https://docs.xarray.dev/en/stable/)). Dat package werkt naadloos met netcdf, en maakt het makkelijk om array’s uit te lezen en weg te schrijven.
